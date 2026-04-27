@@ -91,10 +91,10 @@ namespace SaintsConstSourceGenerator
             {
                 string tagManagerAsset = $"{pathToProject}/ProjectSettings/TagManager.asset";
                 TagManagerYaml tagManagerContainer = ParseFile<TagManagerYaml>(tagManagerAsset);
-                DebugToFile($"{tagManagerContainer}");
-                DebugToFile($"{tagManagerContainer.TagManager}");
-                DebugToFile($"{tagManagerContainer.TagManager.tags}");
-                DebugToFile($"{tagManagerContainer.TagManager.tags.Length}");
+                // DebugToFile($"{tagManagerContainer}");
+                // DebugToFile($"{tagManagerContainer.TagManager}");
+                // DebugToFile($"{tagManagerContainer.TagManager.tags}");
+                // DebugToFile($"{tagManagerContainer.TagManager.tags.Length}");
                 TagManagerParser.WriteTagManagerGen(tagManagerContainer.TagManager, context);
                 _generated = true;
             }

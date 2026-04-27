@@ -57,6 +57,7 @@ namespace SaintsConstSourceGenerator
         #region Tags
         private static void WriteTags(TagManager tagManager, GeneratorExecutionContext context)
         {
+            Utils.DebugToFile($"found tags {string.Join(", ", tagManager.tags)}");
             HashSet<string> conflictedSet = new HashSet<string>();
             HashSet<string> existsName = new HashSet<string>();
             StringBuilder tagFieldsBuilder = new StringBuilder();
@@ -97,10 +98,10 @@ namespace SaintsConstSourceGenerator
             }
 
             string conflictLine = "";
-            Utils.DebugToFile($"processing conflictLine");
+            // Utils.DebugToFile($"processing conflictLine");
             if (conflictedSet.Count > 0)
             {
-                Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
+                // Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
                 conflictLine = "\n    /// <summary>\n" +
                                $"    /// WARNING: conflict layer mask name found: {string.Join(", ", conflictedSet)}\n" +
                                 "    /// </summary>";
@@ -150,26 +151,26 @@ namespace SaintsConst
             for (int index = 0; index < tagManager.layers.Length; index++)
             {
                 string layerName = tagManager.layers[index];
-                Utils.DebugToFile($"LayerName {layerName}");
+                // Utils.DebugToFile($"LayerName {layerName}");
                 if (!string.IsNullOrEmpty(layerName) && layerName.Length != 0)
                 {
                     string key = Utils.ProperVarName(layerName);
                     bool conflicted = !existsName.Add(key);
                     if(conflicted)
                     {
-                        Utils.DebugToFile($"Layer `{layerName}` has conflict programming name `{key}`, skip");
+                        // Utils.DebugToFile($"Layer `{layerName}` has conflict programming name `{key}`, skip");
                         conflictedSet.Add(layerName);
                     }
                     else
                     {
-                        Utils.DebugToFile($"Layer {layerName}");
+                        // Utils.DebugToFile($"Layer {layerName}");
                         int mask = 1 << index;
-                        Utils.DebugToFile($"Layer {layerName} mask {mask}");
+                        // Utils.DebugToFile($"Layer {layerName} mask {mask}");
 
                         nameFieldsBuilder.Append(string.Format(LayersNameFieldTemplate, key, layerName, index, mask));
                         indexFieldsBuilder.Append(string.Format(LayersIndexFieldTemplate, key, layerName, index, mask));
                         maskFieldsBuilder.Append(string.Format(LayersMaskFieldTemplate, key, layerName, index, mask));
-                        Utils.DebugToFile($"Layer {layerName} done");
+                        // Utils.DebugToFile($"Layer {layerName} done");
                     }
 
                     // LayerInfo layerInfo = new LayerInfo(key, layerName, index, mask);
@@ -177,10 +178,10 @@ namespace SaintsConst
             }
 
             string conflictLine = "";
-            Utils.DebugToFile($"processing conflictLine");
+            // Utils.DebugToFile($"processing conflictLine");
             if (conflictedSet.Count > 0)
             {
-                Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
+                // Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
                 conflictLine = "\n    /// <summary>\n" +
                                $"    /// WARNING: conflict layer mask name found: {string.Join(", ", conflictedSet)}\n" +
                                 "    /// </summary>";
@@ -267,7 +268,7 @@ namespace SaintsConst
                 bool conflicted = !existsName.Add(key);
                 if(conflicted)
                 {
-                    Utils.DebugToFile($"SortingLayer `{sortingLayer}` has conflict programming name `{key}`, skip");
+                    // Utils.DebugToFile($"SortingLayer `{sortingLayer}` has conflict programming name `{key}`, skip");
                     conflictedSet.Add(sortingLayer.name);
                 }
                 else
@@ -288,10 +289,10 @@ namespace SaintsConst
             }
 
             string conflictLine = "";
-            Utils.DebugToFile($"processing conflictLine");
+            // Utils.DebugToFile($"processing conflictLine");
             if (conflictedSet.Count > 0)
             {
-                Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
+                // Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
                 conflictLine = "\n    /// <summary>\n" +
                                $"    /// WARNING: conflict layer mask name found: {string.Join(", ", conflictedSet)}\n" +
                                 "    /// </summary>";
@@ -366,8 +367,8 @@ namespace SaintsConst
                     bool conflicted = !existsName.Add(key);
                     if (conflicted)
                     {
-                        Utils.DebugToFile(
-                            $"RenderingLayer `{renderingLayer}` has conflict programming name `{key}`, skip");
+                        // Utils.DebugToFile(
+                        //     $"RenderingLayer `{renderingLayer}` has conflict programming name `{key}`, skip");
                         conflictedSet.Add(renderingLayer);
                     }
                     else
@@ -389,10 +390,10 @@ namespace SaintsConst
             }
 
             string conflictLine = "";
-            Utils.DebugToFile($"processing conflictLine");
+            // Utils.DebugToFile($"processing conflictLine");
             if (conflictedSet.Count > 0)
             {
-                Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
+                // Utils.DebugToFile($"conflictedSet.Count={conflictedSet.Count}");
                 conflictLine = "\n    /// <summary>\n" +
                                $"    /// WARNING: conflict layer mask name found: {string.Join(", ", conflictedSet)}\n" +
                                 "    /// </summary>";
