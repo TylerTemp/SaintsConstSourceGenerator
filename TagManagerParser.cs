@@ -64,6 +64,7 @@ namespace SaintsConstSourceGenerator
 
             List<string> tagsWithDefault = new List<string>
             {
+                "Untagged",
                 "Respawn",
                 "Finish",
                 "EditorOnly",
